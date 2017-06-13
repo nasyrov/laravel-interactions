@@ -5,7 +5,7 @@ namespace Nasyrov\Laravel\Interactions\Contracts;
 interface Interactor
 {
     /**
-     * Dispatch an interaction to its appropriate handler.
+     * Run the interaction.
      *
      * @param mixed $interaction
      * @param array $parameters

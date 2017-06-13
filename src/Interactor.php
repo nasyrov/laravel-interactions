@@ -27,10 +27,10 @@ class Interactor implements InteractorContract
     }
 
     /**
-     * Dispatch an interaction to its appropriate handler.
+     * Run the interaction.
      *
-     * @param mixed $interaction
-     * @param array $parameters
+     * @param string $interaction
+     * @param array  $parameters
      *
      * @return mixed
      */
