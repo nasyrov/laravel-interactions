@@ -36,10 +36,69 @@ Register the service provider in `config/app.php`:
 
 ## Usage
 
-Generate a new interaction class via the command:
+Let's generate a typical user registration flow with the use of interactions.
+
+First, generate a `RegisterUser` interaction via the command:
 
 ``` bash
-$ php artisan make:interaction CreateUserInteraction
+$ php artisan make:interaction RegisterUser
+```
+
+The command above will generate the `RegisterUser` interaction in `app/Interactions/RegisterUser.php`.
+Let's open the file and tailor it for our needs – create a new user:
+
+``` bash
+use App\User;
+use Illuminate\Http\Request;
+use Nasyrov\Laravel\Interactions\Contracts\Interaction;
+
+class RegisterUser implements Interaction
+{
+    /**
+     * Handle the interaction.
+     *
+     * @return mixed
+     */
+    public function handle(Request $request)
+    {
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+    }
+}
+```
+
+Next, include the `CallsInteractions` trait into the base controller so we will be able to run the interactions in any other controller that extends the one:
+
+``` bash
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Nasyrov\Laravel\Interactions\CallsInteractions;
+
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, CallsInteractions, ValidatesRequests;
+}
+```
+
+Finally, in the `UsersController` controller run the `RegisterUser` interaction and pass the request object:
+
+``` bash
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
+use App\Interaction\RegisterUser;
+
+class UsersController extends Controller
+{
+    public function register(RegisterUserRequest $request)
+    {
+        return $this->interact(RegisterUser::classs, [$request]);
+    }
+}
 ```
 
 ## Testing
