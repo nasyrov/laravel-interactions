@@ -3,6 +3,7 @@
 namespace Nasyrov\Laravel\Interactions;
 
 use Illuminate\Support\ServiceProvider;
+use Nasyrov\Laravel\Interactions\Console\InteractionMakeCommand;
 use Nasyrov\Laravel\Interactions\Contracts\Interactor as InteractorContract;
 
 class InteractionServiceProvider extends ServiceProvider
@@ -26,6 +27,10 @@ class InteractionServiceProvider extends ServiceProvider
         });
 
         $this->app->alias(Interactor::class, InteractorContract::class);
+
+        $this->commands([
+            InteractionMakeCommand::class,
+        ]);
     }
 
     /**

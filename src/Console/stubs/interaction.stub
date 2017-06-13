@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use Nasyrov\Laravel\Interactions\Contracts\Interaction;
+
+class DummyClass implements Interaction
+{
+    /**
+     * Handle the interaction.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        //
+    }
+}
