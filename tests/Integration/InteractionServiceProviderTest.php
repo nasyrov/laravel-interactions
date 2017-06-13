@@ -10,7 +10,7 @@ use Nasyrov\Laravel\Interactions\Interactor;
 class InteractionServiceProviderTest extends TestCase
 {
     /** @test */
-    public function it_registers_services()
+    public function it_registers()
     {
         $this->assertTrue($this->app->bound(Interactor::class));
         $this->assertTrue($this->app->bound(InteractorContract::class));

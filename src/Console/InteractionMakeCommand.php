@@ -2,9 +2,9 @@
 
 namespace Nasyrov\Laravel\Interactions\Console;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Console\GeneratorCommand;
 
-class InteractionMakeCommand extends ServiceProvider
+class InteractionMakeCommand extends GeneratorCommand
 {
     /**
      * The console command name.
