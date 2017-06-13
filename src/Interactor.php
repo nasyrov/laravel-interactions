@@ -2,12 +2,30 @@
 
 namespace Nasyrov\Laravel\Interactions;
 
+use Illuminate\Contracts\Container\Container;
 use InvalidArgumentException;
 use Nasyrov\Laravel\Interactions\Contracts\Interaction as InteractionContract;
 use Nasyrov\Laravel\Interactions\Contracts\Interactor as InteractorContract;
 
 class Interactor implements InteractorContract
 {
+    /**
+     * The container implementation.
+     *
+     * @var Container
+     */
+    protected $container;
+
+    /**
+     * Create a new interactor instance.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * Dispatch an interaction to its appropriate handler.
      *
@@ -53,15 +71,15 @@ class Interactor implements InteractorContract
      */
     protected function resolveInstance($class)
     {
-        $resolved = resolve($class);
+        $instance = $this->container->make($class);
 
-        if (!$resolved instanceof InteractionContract) {
+        if (!$instance instanceof InteractionContract) {
             throw new InvalidArgumentException(sprintf(
                 '`%s` is not a valid interaction.',
                 $class
             ));
         }
 
-        return $resolved;
+        return $instance;
     }
 }
