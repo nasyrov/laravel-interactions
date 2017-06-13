@@ -44,10 +44,10 @@ First, generate a `RegisterUser` interaction via the command:
 $ php artisan make:interaction RegisterUser
 ```
 
-The command above will generate the `RegisterUser` interaction in `app/Interactions/RegisterUser.php`.
+The command above will create a new file `app/Interactions/RegisterUser.php`.
 Let's open the file and tailor it for our needs – create a new user:
 
-``` bash
+``` php
 use App\User;
 use Illuminate\Http\Request;
 use Nasyrov\Laravel\Interactions\Contracts\Interaction;
@@ -72,7 +72,7 @@ class RegisterUser implements Interaction
 
 Next, include the `CallsInteractions` trait into the base controller so we will be able to run the interactions in any other controller that extends the one:
 
-``` bash
+``` php
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -87,10 +87,10 @@ class Controller extends BaseController
 
 Finally, in the `UsersController` controller run the `RegisterUser` interaction and pass the request object:
 
-``` bash
+``` php
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterUserRequest;
 use App\Interaction\RegisterUser;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
