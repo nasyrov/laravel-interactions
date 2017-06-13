@@ -27,7 +27,7 @@ class Interactor implements InteractorContract
     }
 
     /**
-     * Dispatch an interaction to its appropriate handler.
+     * Run the interaction.
      *
      * @param string $interaction
      * @param array  $parameters
