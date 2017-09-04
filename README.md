@@ -21,7 +21,7 @@ Make sure all dependencies have been installed before moving on:
 Pull the package via Composer:
 
 ``` bash
-$ composer require nasyrov/laravel-interactionss
+$ composer require nasyrov/laravel-interactions
 ```
 
 Register the service provider in `config/app.php`:
