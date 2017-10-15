@@ -2,7 +2,7 @@
 
 namespace Nasyrov\Laravel\Interactions;
 
-use Nasyrov\Laravel\Interactions\Contracts\Interactor;
+use Nasyrov\Laravel\Interactions\Facades\Interactor;
 
 trait CallsInteractions
 {
@@ -16,6 +16,6 @@ trait CallsInteractions
      */
     public function interact($interaction, array $parameters = [])
     {
-        return app(Interactor::class)->interact($interaction, $parameters);
+        return Interactor::interact($interaction, $parameters);
     }
 }
