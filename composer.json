@@ -44,7 +44,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nasyrov\\Laravel\\Interactions\\InteractionsServiceProvider"
+                "Nasyrov\\Laravel\\Interactions\\InteractionServiceProvider"
             ]
         }
     },
