@@ -96,7 +96,7 @@ class UsersController extends Controller
 {
     public function register(RegisterUserRequest $request)
     {
-        return $this->interact(RegisterUser::classs, [$request]);
+        return $this->interact(RegisterUser::class, [$request]);
     }
 }
 ```
